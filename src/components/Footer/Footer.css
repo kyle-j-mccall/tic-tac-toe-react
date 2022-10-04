@@ -1,11 +1,9 @@
-header {
+footer {
   display: flex;
   background-color: rgb(61, 131, 97);
-  font-size: 4vh;
+  font-size: 2vh;
   justify-content: center;
   align-items: center;
   height: 5vh;
   font-family: 'Peralta', cursive;
-  color: rgb(214, 205, 164);
-  text-shadow: 2px 2px 2px black;
 }

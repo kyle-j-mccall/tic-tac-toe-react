@@ -3,6 +3,6 @@ import './Box.css';
 
 export default function Box() {
   return (
-    <div className='cell'>Box</div>
+    <div className='cell'></div>
   );
 }
