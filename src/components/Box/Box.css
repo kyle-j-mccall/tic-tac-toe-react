@@ -2,13 +2,25 @@
   background-color: rgb(238, 242, 230);
   border: 3px solid rgb(28, 103, 88);
   border-radius: 6px;
-  margin: .15vh;
+  margin: 0.15vh;
   cursor: pointer;
-  box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.75);
 }
 
 .cell:hover {
   transform: scale(1.02);
+}
+
+.cell p {
+  font-family: 'Peralta', cursive;
+  font-size: 4vh;
+  color: rgb(28, 103, 88);
+  text-shadow: 2px 2px 2px black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(214, 205, 164);
 }
