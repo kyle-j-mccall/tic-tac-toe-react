@@ -3,26 +3,21 @@ import { GameContext } from '../../context/GameContext';
 import './Box.css';
 
 export default function Box({ space, content }) {
-  const { currentPlayer, setCurrentPlayer, board, setBoard, message, setMessage, displayMove } =
-    useContext(GameContext);
+  const { displayMove, checkWinX, checkWinO, setActive, disableSpace } = useContext(GameContext);
 
-  // const clickHandler = () => {
-  //   if (currentPlayer === 'X') {
-  //     setBoard((prevState) =>
-  //       prevState.map(({ space }) => ({
-  //         space: space,
-  //         content: currentPlayer,
-  //       }))
-  //     );
-
-  //     setCurrentPlayer('O');
-  //   }
-  // };
-
-  console.log('contenttt', board);
+  const className = disableSpace(content);
 
   return (
-    <div className="cell" value={space} onClick={() => displayMove(space)}>
+    <div
+      className={`${className} cell`}
+      onClick={() => {
+        displayMove(space);
+        setActive(false);
+        disableSpace(content);
+        checkWinX();
+        checkWinO();
+      }}
+    >
       <p>{content}</p>
     </div>
   );

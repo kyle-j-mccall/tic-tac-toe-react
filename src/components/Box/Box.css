@@ -24,3 +24,7 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(214, 205, 164);
 }
+
+.disabled {
+  pointer-events: none;
+}

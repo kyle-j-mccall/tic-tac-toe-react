@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GameContext } from '../../context/GameContext';
 import './Message.css';
 
 export default function Message() {
+  const { message } = useContext(GameContext);
+
   return (
-    <div className='message-container'>
-      <h3>Your turn X</h3>
+    <div className="message-container">
+      <h3>{message}</h3>
     </div>
   );
 }
