@@ -122,22 +122,7 @@ const GameProvider = ({ children }) => {
   };
 
   const checkCatsGame = () => {
-    if (!active) return;
-    if (
-      !winner &&
-      board[0].content !== '' &&
-      board[1].content !== '' &&
-      board[2].content !== '' &&
-      board[3].content !== '' &&
-      board[4].content !== '' &&
-      board[5].content !== '' &&
-      board[6].content !== '' &&
-      board[7].content !== '' &&
-      board[8].content !== ''
-    ) {
-      setActive(false);
-      setMessage('Cats Game');
-    }
+    return board.filter((box) => box.content === '').length === 0;
   };
 
   const gameState = {
