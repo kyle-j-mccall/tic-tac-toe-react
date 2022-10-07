@@ -12,7 +12,6 @@ export default function Box({ space, content }) {
       className={`${className} cell`}
       onClick={() => {
         displayMove(space);
-
         disableSpace(content);
       }}
     >

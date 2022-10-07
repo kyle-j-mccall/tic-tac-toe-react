@@ -17,6 +17,13 @@ const GameProvider = ({ children }) => {
     }
     return className;
   };
+  const disableSpaceOnWin = (winner) => {
+    let className = '';
+    if (winner) {
+      className = 'disabled';
+    }
+    return className;
+  };
 
   const displayMove = (space) => {
     const move = {
@@ -41,41 +48,36 @@ const GameProvider = ({ children }) => {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[3].content === 'X' && board[4].content === 'X' && board[5].content === 'X') {
+    } else if (board[3].content === 'X' && board[4].content === 'X' && board[5].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[6].content === 'X' && board[7].content === 'X' && board[8].content === 'X') {
+    } else if (board[6].content === 'X' && board[7].content === 'X' && board[8].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[0].content === 'X' && board[3].content === 'X' && board[6].content === 'X') {
+    } else if (board[0].content === 'X' && board[3].content === 'X' && board[6].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[1].content === 'X' && board[4].content === 'X' && board[7].content === 'X') {
+    } else if (board[1].content === 'X' && board[4].content === 'X' && board[7].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[2].content === 'X' && board[5].content === 'X' && board[8].content === 'X') {
+    } else if (board[2].content === 'X' && board[5].content === 'X' && board[8].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[0].content === 'X' && board[4].content === 'X' && board[8].content === 'X') {
+    } else if (board[0].content === 'X' && board[4].content === 'X' && board[8].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
-    }
-    if (board[2].content === 'X' && board[4].content === 'X' && board[6].content === 'X') {
+    } else if (board[2].content === 'X' && board[4].content === 'X' && board[6].content === 'X') {
       setWinner('X');
       setActive(false);
       setMessage('X wins');
+    } else {
+      checkCatsGame();
     }
   };
 
@@ -86,41 +88,55 @@ const GameProvider = ({ children }) => {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[3].content === 'O' && board[4].content === 'O' && board[5].content === 'O') {
+    } else if (board[3].content === 'O' && board[4].content === 'O' && board[5].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[6].content === 'O' && board[7].content === 'O' && board[8].content === 'O') {
+    } else if (board[6].content === 'O' && board[7].content === 'O' && board[8].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[0].content === 'O' && board[3].content === 'O' && board[6].content === 'O') {
+    } else if (board[0].content === 'O' && board[3].content === 'O' && board[6].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[1].content === 'O' && board[4].content === 'O' && board[7].content === 'O') {
+    } else if (board[1].content === 'O' && board[4].content === 'O' && board[7].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[2].content === 'O' && board[5].content === 'O' && board[8].content === 'O') {
+    } else if (board[2].content === 'O' && board[5].content === 'O' && board[8].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[0].content === 'O' && board[4].content === 'O' && board[8].content === 'O') {
+    } else if (board[0].content === 'O' && board[4].content === 'O' && board[8].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
-    }
-    if (board[2].content === 'O' && board[4].content === 'O' && board[6].content === 'O') {
+    } else if (board[2].content === 'O' && board[4].content === 'O' && board[6].content === 'O') {
       setWinner('O');
       setActive(false);
       setMessage('O wins');
+    } else {
+      checkCatsGame();
+    }
+  };
+
+  const checkCatsGame = () => {
+    if (!active) return;
+    if (
+      !winner &&
+      board[0].content !== '' &&
+      board[1].content !== '' &&
+      board[2].content !== '' &&
+      board[3].content !== '' &&
+      board[4].content !== '' &&
+      board[5].content !== '' &&
+      board[6].content !== '' &&
+      board[7].content !== '' &&
+      board[8].content !== ''
+    ) {
+      setActive(false);
+      setMessage('Cats Game');
     }
   };
 
@@ -137,10 +153,12 @@ const GameProvider = ({ children }) => {
     setBoard,
     displayMove,
     disableSpace,
+    disableSpaceOnWin,
   };
 
   checkWinO();
   checkWinX();
+  checkCatsGame();
 
   return <GameContext.Provider value={{ ...gameState }}>{children}</GameContext.Provider>;
 };

@@ -4,11 +4,13 @@ import Box from '../Box/Box';
 import './Board.css';
 
 export default function Board() {
-  const { board } = useContext(GameContext);
+  const { board, winner, disableSpaceOnWin } = useContext(GameContext);
+
+  const className = disableSpaceOnWin(winner);
 
   return (
     <div>
-      <div className="board">
+      <div className={`${className} board`}>
         {board.map((cell) => {
           return <Box key={cell.space} space={cell.space} content={cell.content} />;
         })}
