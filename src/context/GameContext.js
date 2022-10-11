@@ -10,6 +10,10 @@ const GameProvider = ({ children }) => {
   const [board, setBoard] = useState(boardState);
   const [winner, setWinner] = useState('');
 
+  const handleReset = () => {
+    setBoard((prevState) => prevState.map((cell) => (cell.content = '')));
+  };
+
   const disableSpace = (content) => {
     let className = '';
     if (content !== '') {
@@ -30,7 +34,7 @@ const GameProvider = ({ children }) => {
       content: currentPlayer,
       space: space,
     };
-
+    if (!active) return;
     if (currentPlayer === 'X') {
       setBoard((prevState) => prevState.map((cell) => (cell.space === space ? move : cell)));
       setCurrentPlayer('O');
@@ -122,7 +126,14 @@ const GameProvider = ({ children }) => {
   };
 
   const checkCatsGame = () => {
-    return board.filter((box) => box.content === '').length === 0;
+    if (!active) return;
+    const catsGame = board.filter((box) => box.content !== '');
+
+    if (catsGame.length === 9) {
+      setActive(false);
+      setMessage('Cats game');
+      return catsGame;
+    } else return;
   };
 
   const gameState = {
@@ -139,11 +150,11 @@ const GameProvider = ({ children }) => {
     displayMove,
     disableSpace,
     disableSpaceOnWin,
+    handleReset,
   };
 
   checkWinO();
   checkWinX();
-  checkCatsGame();
 
   return <GameContext.Provider value={{ ...gameState }}>{children}</GameContext.Provider>;
 };
