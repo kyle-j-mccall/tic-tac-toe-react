@@ -11,21 +11,28 @@ const GameProvider = ({ children }) => {
   const [winner, setWinner] = useState('');
 
   const handleReset = () => {
-    setBoard((prevState) => prevState.map((cell) => (cell.content = '')));
+    setBoard(boardState);
+    setMessage('Your turn X');
   };
 
   const disableSpace = (content) => {
     let className = '';
     if (content !== '') {
       className = 'disabled';
+    } else {
+      className = '';
     }
+
     return className;
   };
   const disableSpaceOnWin = (winner) => {
     let className = '';
     if (winner) {
       className = 'disabled';
+    } else {
+      className = '';
     }
+
     return className;
   };
 
